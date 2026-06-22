@@ -31,16 +31,6 @@ h1 em{color:#800C3B;font-style:italic}
 .error-msg{font-size:11px;color:#800C3B;margin-top:10px;text-align:left;display:none}
 .privacy-note{font-size:10px;color:#8B6B55;margin-top:20px;line-height:1.7}
 
-/* Reproductor (oculto hasta que se complete el formulario) */
-.player-view{display:none}
-.player-view.active{display:block}
-.form-view.hidden{display:none}
-.player-icon{font-family:'Cormorant Garamond',serif;font-size:48px;color:#800C3B;margin-bottom:8px}
-audio{width:100%;margin:28px 0 8px;accent-color:#800C3B}
-.player-tip{font-size:12px;color:#8B6B55;line-height:1.8;margin-top:8px;text-align:left;background:rgba(236,216,171,.25);padding:18px 20px;border-left:2px solid #ECD8AB}
-.footer-mini{margin-top:36px;font-size:10px;color:#8B6B55;letter-spacing:.05em}
-.footer-mini a{color:#800C3B;text-decoration:none}
-
 @media(max-width:480px){
   .card{padding:40px 26px}
   h1{font-size:28px}
@@ -77,27 +67,6 @@ audio{width:100%;margin:28px 0 8px;accent-color:#800C3B}
     <p class="privacy-note">Tu información se gestiona conforme al RGPD europeo. Solo se usa para enviarte este contenido y, si lo permites, futuras comunicaciones de la marca.</p>
   </div>
 
-  <div class="player-view" id="playerView">
-    <div class="player-icon">✦</div>
-    <h1>Bienvenidx<br><em>a tu momento.</em></h1>
-    <p class="sub">Búscate un lugar tranquilo, ponte los auriculares y date permiso de soltar todo por un rato.</p>
-
-    <audio controls preload="none">
-      <source src="https://www.dropbox.com/scl/fi/caqwggnz3j0hxubxzcnu7/Meditaci-n-de-Regreso?rlkey=o5gkc92w9yx639f5ss5wcjns7&st=77ic2knt&dl=1" type="audio/mpeg">
-      Tu navegador no soporta la reproducción de audio. Puedes descargarla directamente desde este enlace.
-    </audio>
-
-    <div class="player-tip">
-      Cuando termines, si sientes que algo en ti está listo para ir más profundo, puedes escribirme directamente por WhatsApp. Estoy aquí para acompañarte.
-    </div>
-
-    <p class="footer-mini">
-      <a href="https://wa.me/34697715569" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
-      &nbsp;·&nbsp;
-      <a href="/" >Conocer los procesos de Lady Loana</a>
-    </p>
-  </div>
-
 </div>
 
 <script>
@@ -128,10 +97,6 @@ async function submitMeditationForm() {
   btn.disabled = true;
   btn.textContent = 'Un momento...';
 
-  // Mostrar el reproductor de inmediato: la experiencia de la persona
-  // nunca debe depender de que Brevo responda a tiempo.
-  showPlayer();
-
   try {
     await fetch('/api/subscribe-meditation', {
       method: 'POST',
@@ -141,12 +106,8 @@ async function submitMeditationForm() {
   } catch (err) {
     console.error('No se pudo guardar el contacto en este momento', err);
   }
-}
 
-function showPlayer() {
-  document.getElementById('formView').classList.add('hidden');
-  document.getElementById('playerView').classList.add('active');
-  window.scrollTo(0, 0);
+  window.location.href = '/gracias.html';
 }
 </script>
 </body>

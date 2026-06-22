@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#FAF0E5">
+<meta name="robots" content="noindex">
+<title>Uso Responsable de los Servicios. Lady Loana Hipnoterapia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{color-scheme:light only}
+body{background:#FAF0E5;color:#3D2314;font-family:'Montserrat',sans-serif;font-weight:300;min-height:100vh;padding:80px 24px;position:relative;overflow-x:hidden;line-height:1.8}
+.bg-pearl{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,.5) 0%,transparent 50%),radial-gradient(ellipse at 80% 70%,rgba(236,216,171,.25) 0%,transparent 45%),linear-gradient(135deg,#faf0e5 0%,#f5ece0 50%,#ede0d0 100%)}
+.wrap{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.back{display:inline-block;font-size:11px;color:#69402F;text-decoration:none;letter-spacing:.1em;text-transform:uppercase;margin-bottom:40px}
+.back:hover{color:#800C3B}
+.tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#800C3B;border:1px solid rgba(128,12,59,.4);padding:6px 18px;margin-bottom:24px}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,6vw,42px);font-weight:300;line-height:1.2;color:#3D2314;margin-bottom:12px}
+.updated{font-size:11px;color:#8B6B55;margin-bottom:48px;font-style:italic}
+h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:#800C3B;margin:40px 0 16px}
+p{font-size:14px;color:#3D2314;margin-bottom:16px}
+ul{margin:0 0 16px 20px}
+li{font-size:14px;color:#3D2314;margin-bottom:8px}
+strong{color:#800C3B;font-weight:600}
+a{color:#800C3B;text-decoration:underline}
+.closing{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#69402F;text-align:center;margin:48px 0;padding:32px 24px;background:rgba(236,216,171,.18)}
+.foot-note{font-size:11px;color:#8B6B55;margin-top:64px;padding-top:24px;border-top:1px solid rgba(200,149,108,.25);font-style:italic}
+@media(max-width:480px){body{padding:48px 20px}h1{font-size:28px}}
+</style>
+</head>
+<body>
+<div class="bg-pearl"></div>
+<div class="wrap">
+  <a href="/index.html" class="back">← Volver al inicio</a>
+  <span class="tag">Lady Loana Hipnoterapia</span>
+  <h1>Uso Responsable de los Servicios</h1>
+  <p class="updated">Última actualización: 20 de junio de 2026</p>
+
+  <p>Antes de comenzar cualquier proceso con Lady Loana Hipnoterapia, te invitamos a leer esta página con atención, ya que recoge información importante sobre la naturaleza de los servicios que ofrecemos.</p>
+
+  <h2>Qué son estos servicios</h2>
+  <p>Los servicios ofrecidos tienen fines educativos, de desarrollo personal y bienestar emocional. Están diseñados para acompañarte en el trabajo con patrones subconscientes, la gestión del estrés, el autoconocimiento, y la construcción de hábitos más saludables.</p>
+
+  <h2>Qué no son estos servicios</h2>
+  <ul>
+    <li><strong>No constituyen tratamiento médico, psicológico ni psiquiátrico.</strong></li>
+    <li><strong>No se realizan diagnósticos</strong> de ningún tipo.</li>
+    <li><strong>No se garantizan resultados específicos.</strong> Cada proceso es único, y los resultados dependen de múltiples factores personales, incluyendo tu compromiso, tu disposición al cambio, y tu contexto de vida particular.</li>
+  </ul>
+
+  <h2>Cuándo NO es recomendable iniciar un proceso de hipnoterapia</h2>
+  <p>Te recomendamos consultar primero con un profesional de la salud antes de iniciar un proceso de hipnoterapia si:</p>
+  <ul>
+    <li>Estás atravesando un episodio agudo de crisis de salud mental.</li>
+    <li>Tienes un diagnóstico de epilepsia, psicosis, o trastornos disociativos severos, sin supervisión médica activa.</li>
+    <li>Estás bajo los efectos de sustancias que puedan alterar tu estado de consciencia en el momento de la sesión.</li>
+  </ul>
+  <p>Si tienes cualquier duda sobre si este proceso es adecuado para tu situación particular, puedes escribirnos antes de reservar, y con gusto te orientaremos con honestidad sobre si es el momento adecuado para ti.</p>
+
+  <h2>Tu compromiso en el proceso</h2>
+  <p>La transformación no depende únicamente de la sesión en sí, sino del compromiso que sostienes después de ella. Los audios, ejercicios y materiales que forman parte de cada proceso están diseñados para acompañarte entre sesiones; su efectividad está directamente relacionada con la constancia con la que los integres en tu día a día.</p>
+
+  <div class="closing">Lo que sí podemos ofrecerte es un acompañamiento honesto, profesional y comprometido en cada paso del camino.</div>
+
+  <p class="foot-note">Esta página es un documento informativo y no constituye asesoramiento legal ni sanitario.</p>
+</div>
+</body>
+</html>

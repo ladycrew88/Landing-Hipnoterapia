@@ -1,11 +1,12 @@
 // netlify/functions/subscribe-meditation.js
 //
-// Recibe nombre + email desde la página de la meditación
-// y los guarda en Brevo, en la lista dedicada a este lead magnet.
+// Recibe nombre + email desde la página de la meditación y los guarda en Brevo,
+// dentro de la lista única Comunidad Lady Loana, marcando el recurso recibido.
 
 const BREVO_API_URL = "https://api.brevo.com/v3/contacts";
 
-const LIST_MEDITACION = 7;
+// Misma lista única que subscribe.js, ID #11.
+const LIST_COMUNIDAD = 11;
 
 exports.handler = async function (event) {
   if (event.httpMethod !== "POST") {
@@ -40,38 +41,6 @@ exports.handler = async function (event) {
     email: email,
     attributes: {
       NOMBRE: nombre || "",
-      ORIGEN: "lead_magnet_meditacion",
-      FECHA_REGISTRO: today,
-      ACEPTA_COMUNICACIONES: true
-    },
-    listIds: [LIST_MEDITACION],
-    updateEnabled: true
-  };
-
-  try {
-    const response = await fetch(BREVO_API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "api-key": apiKey
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (response.status === 201 || response.status === 204) {
-      return { statusCode: 200, body: JSON.stringify({ success: true }) };
-    }
-
-    const errorBody = await response.text();
-    return {
-      statusCode: response.status,
-      body: JSON.stringify({ error: "Error de Brevo", detail: errorBody })
-    };
-
-  } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Error de conexión", detail: err.message })
-    };
-  }
-};
+      ETAPA_RECORRIDO: "Explorando",
+      ORIGEN_PRIMER_CONTACTO: "meditacion",
+      FECHA_PRIMER_CONTACTO: today,

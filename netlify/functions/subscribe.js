@@ -1,39 +1,40 @@
 // netlify/functions/subscribe.js
 //
-// Esta función recibe el email + resultado del test desde la landing
-// y lo envía de forma segura a Brevo, sin exponer la API key en el navegador.
+// Esta función recibe el resultado del test desde la landing y lo envía
+// de forma segura a Brevo, sin exponer la API key en el navegador.
 //
-// La API key se lee desde las variables de entorno de Netlify (BREVO_API_KEY),
-// nunca desde el código visible al público.
+// Arquitectura: una sola lista (Comunidad Lady Loana, ID 11) con atributos,
+// en vez de listas separadas por perfil.
 
 const BREVO_API_URL = "https://api.brevo.com/v3/contacts";
 
-// IDs de las listas ya existentes en Brevo (carpeta "Leads Landing Principal")
-const LISTS = {
-  GENERAL: 3,
-  PROFESIONAL: 4,
-  CONSCIENTE: 5,
-  BUSCADOR: 6
-};
+// ID de la lista única "Comunidad Lady Loana" (carpeta Leads Landing Principal).
+const LIST_COMUNIDAD = 11;
 
-function getListIdForProfile(profileName, producto) {
+// Mapea el nombre del perfil resultante a su categoría de interés y patrón predominante.
+function getClasificacionPorPerfil(profileName) {
   const name = (profileName || "").toLowerCase();
-  const prod = (producto || "").toLowerCase();
 
-  const buscadorSignals = ["gremlín", "saboteador", "controlador", "perfeccionista", "hiperindependiente"];
-  if (buscadorSignals.some(s => name.includes(s))) return LISTS.BUSCADOR;
+  const mapa = {
+    "la profesional sensible": { categoria: "Gestión del estrés", patron: "Exigencia interna / Saturación" },
+    "la mente consciente": { categoria: "Autoestima y valor propio", patron: "Desconexión del propio valor" },
+    "el patrón saboteador": { categoria: "Patrones de protección", patron: "Autosabotaje" },
+    "gremlín activo": { categoria: "Patrones de protección", patron: "Autosabotaje activo" },
+    "gremlín moderado": { categoria: "Patrones de protección", patron: "Autosabotaje intermitente" },
+    "patrón en construcción": { categoria: "Patrones de protección", patron: "Autosabotaje temprano" },
+    "sistema equilibrado": { categoria: "Gestión del estrés", patron: "Prevención" },
+    "mente cansada": { categoria: "Gestión del estrés", patron: "Acumulación moderada" },
+    "sistema saturado": { categoria: "Gestión del estrés", patron: "Alerta permanente" },
+    "la capa más profunda": { categoria: "Trabajo profundo", patron: "Patrón resistente al trabajo consciente" },
+    "el patrón con historia": { categoria: "Trabajo profundo", patron: "Patrón con origen antiguo" },
+    "el complaciente": { categoria: "Relaciones y límites", patron: "Complacencia" },
+    "el controlador": { categoria: "Control / Seguridad", patron: "Necesidad de control" },
+    "el perfeccionista": { categoria: "Control / Seguridad", patron: "Perfeccionismo" },
+    "el hiperindependiente": { categoria: "Relaciones y límites", patron: "Hiperindependencia" },
+    "el invisible": { categoria: "Autoestima y valor propio", patron: "Autoinvisibilización" }
+  };
 
-  const conscienteSignals = ["mente consciente", "capa más profunda", "patrón con historia", "invisible", "complaciente"];
-  if (conscienteSignals.some(s => name.includes(s))) return LISTS.CONSCIENTE;
-
-  const profesionalSignals = ["profesional sensible", "sistema equilibrado", "mente cansada", "sistema saturado", "construcción"];
-  if (profesionalSignals.some(s => name.includes(s))) return LISTS.PROFESIONAL;
-
-  if (prod.includes("mental detox")) return LISTS.PROFESIONAL;
-  if (prod.includes("volver a ti")) return LISTS.CONSCIENTE;
-  if (prod.includes("gremlín")) return LISTS.BUSCADOR;
-
-  return null;
+  return mapa[name] || { categoria: "Crecimiento personal", patron: "Patrón general" };
 }
 
 exports.handler = async function (event) {
@@ -63,21 +64,23 @@ exports.handler = async function (event) {
     return { statusCode: 400, body: JSON.stringify({ error: "Falta consentimiento RGPD" }) };
   }
 
-  const listIds = [LISTS.GENERAL];
-  const profileListId = getListIdForProfile(resultado, producto);
-  if (profileListId) listIds.push(profileListId);
-
+  const clasificacion = getClasificacionPorPerfil(resultado);
   const today = new Date().toISOString().split("T")[0];
 
   const payload = {
     email: email,
     attributes: {
       RESULTADO_TEST: resultado || "",
-      PRODUCTO_RECOMENDADO: producto || "",
-      ORIGEN: testId || "landing",
-      FECHA_TEST: today
+      INTERES_PRINCIPAL: clasificacion.categoria,
+      PATRON_PREDOMINANTE: clasificacion.patron,
+      PRODUCTO_SUGERIDO_ACTUAL: producto || "",
+      ETAPA_RECORRIDO: "Identificado",
+      ORIGEN_PRIMER_CONTACTO: testId || "test_landing",
+      FECHA_PRIMER_CONTACTO: today,
+      FECHA_ULTIMA_INTERACCION: today,
+      ACEPTA_MARKETING: true
     },
-    listIds: listIds,
+    listIds: [LIST_COMUNIDAD],
     updateEnabled: true
   };
 

@@ -44,3 +44,37 @@ exports.handler = async function (event) {
       ETAPA_RECORRIDO: "Explorando",
       ORIGEN_PRIMER_CONTACTO: "meditacion",
       FECHA_PRIMER_CONTACTO: today,
+      FECHA_ULTIMA_INTERACCION: today,
+      ACEPTA_MARKETING: true
+    },
+    listIds: [LIST_COMUNIDAD],
+    updateEnabled: true
+  };
+
+  try {
+    const response = await fetch(BREVO_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "api-key": apiKey
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.status === 201 || response.status === 204) {
+      return { statusCode: 200, body: JSON.stringify({ success: true }) };
+    }
+
+    const errorBody = await response.text();
+    return {
+      statusCode: response.status,
+      body: JSON.stringify({ error: "Error de Brevo", detail: errorBody })
+    };
+
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Error de conexión", detail: err.message })
+    };
+  }
+};

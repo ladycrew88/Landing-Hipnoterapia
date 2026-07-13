@@ -16,8 +16,9 @@ function getClasificacionPorPerfil(profileName) {
   const name = (profileName || "").toLowerCase();
 
   const mapa = {
-    "la profesional sensible": { categoria: "Gestión del estrés", patron: "Exigencia interna / Saturación" },
-    "la mente consciente": { categoria: "Autoestima y valor propio", patron: "Desconexión del propio valor" },
+    "el sistema en alerta": { categoria: "Gestión del estrés", patron: "Exigencia interna / Saturación" },
+    "la puerta sin abrir": { categoria: "Trabajo profundo", patron: "Capa no accedida por el trabajo consciente" },
+    "la duda que decide": { categoria: "Autoestima y valor propio", patron: "Brecha entre saber y sentir el propio valor" },
     "el patrón saboteador": { categoria: "Patrones de protección", patron: "Autosabotaje" },
     "gremlín activo": { categoria: "Patrones de protección", patron: "Autosabotaje activo" },
     "gremlín moderado": { categoria: "Patrones de protección", patron: "Autosabotaje intermitente" },
@@ -27,11 +28,11 @@ function getClasificacionPorPerfil(profileName) {
     "sistema saturado": { categoria: "Gestión del estrés", patron: "Alerta permanente" },
     "la capa más profunda": { categoria: "Trabajo profundo", patron: "Patrón resistente al trabajo consciente" },
     "el patrón con historia": { categoria: "Trabajo profundo", patron: "Patrón con origen antiguo" },
-    "el complaciente": { categoria: "Relaciones y límites", patron: "Complacencia" },
-    "el controlador": { categoria: "Control / Seguridad", patron: "Necesidad de control" },
-    "el perfeccionista": { categoria: "Control / Seguridad", patron: "Perfeccionismo" },
-    "el hiperindependiente": { categoria: "Relaciones y límites", patron: "Hiperindependencia" },
-    "el invisible": { categoria: "Autoestima y valor propio", patron: "Autoinvisibilización" }
+    "la costumbre de complacer": { categoria: "Relaciones y límites", patron: "Complacencia" },
+    "el control como refugio": { categoria: "Control / Seguridad", patron: "Necesidad de control" },
+    "la perfección como refugio": { categoria: "Control / Seguridad", patron: "Perfeccionismo" },
+    "cargar antes que confiar": { categoria: "Relaciones y límites", patron: "Hiperindependencia" },
+    "el/la invisible": { categoria: "Autoestima y valor propio", patron: "Autoinvisibilización" }
   };
 
   return mapa[name] || { categoria: "Crecimiento personal", patron: "Patrón general" };
@@ -54,7 +55,7 @@ exports.handler = async function (event) {
     return { statusCode: 400, body: JSON.stringify({ error: "JSON inválido" }) };
   }
 
-  const { email, resultado, producto, testId, optIn } = data;
+  const { email, nombre, resultado, producto, testId, optIn, descripcion, ejercicio, practica2, porquePrograma } = data;
 
   if (!email || !email.includes("@")) {
     return { statusCode: 400, body: JSON.stringify({ error: "Email inválido" }) };
@@ -70,7 +71,12 @@ exports.handler = async function (event) {
   const payload = {
     email: email,
     attributes: {
+      NOMBRE: nombre || "",
       RESULTADO_TEST: resultado || "",
+      RESULTADO_DESC: descripcion || "",
+      EJERCICIO: ejercicio || "",
+      PRACTICA_2: practica2 || "",
+      PORQUE_PROGRAMA: porquePrograma || "",
       INTERES_PRINCIPAL: clasificacion.categoria,
       PATRON_PREDOMINANTE: clasificacion.patron,
       PRODUCTO_SUGERIDO_ACTUAL: producto || "",

@@ -43,6 +43,7 @@ exports.handler = async function (event) {
       NOMBRE: nombre || "",
       ETAPA_RECORRIDO: "Explorando",
       ORIGEN_PRIMER_CONTACTO: "meditacion",
+      MEDITACION_ASIGNADA: "General",
       FECHA_PRIMER_CONTACTO: today,
       FECHA_ULTIMA_INTERACCION: today,
       ACEPTA_MARKETING: true

@@ -80,6 +80,7 @@ exports.handler = async function (event) {
       INTERES_PRINCIPAL: clasificacion.categoria,
       PATRON_PREDOMINANTE: clasificacion.patron,
       PRODUCTO_SUGERIDO_ACTUAL: producto || "",
+      MEDITACION_ASIGNADA: producto || "General",
       ETAPA_RECORRIDO: "Identificado",
       ORIGEN_PRIMER_CONTACTO: testId || "test_landing",
       FECHA_PRIMER_CONTACTO: today,

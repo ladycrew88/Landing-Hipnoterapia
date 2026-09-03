@@ -10,6 +10,7 @@ const BREVO_API_URL = "https://api.brevo.com/v3/contacts";
 
 // ID de la lista única "Comunidad Lady Loana" (carpeta Leads Landing Principal).
 const LIST_COMUNIDAD = 11;
+const LIST_TEST = 12;
 
 // Mapea el nombre del perfil resultante a su categoría de interés y patrón predominante.
 function getClasificacionPorPerfil(profileName) {
@@ -87,7 +88,7 @@ exports.handler = async function (event) {
       FECHA_ULTIMA_INTERACCION: today,
       ACEPTA_MARKETING: true
     },
-    listIds: [LIST_COMUNIDAD],
+    listIds: [LIST_COMUNIDAD, LIST_TEST],
     updateEnabled: true
   };
 

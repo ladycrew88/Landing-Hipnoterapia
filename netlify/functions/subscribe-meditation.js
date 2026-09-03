@@ -7,6 +7,7 @@ const BREVO_API_URL = "https://api.brevo.com/v3/contacts";
 
 // Misma lista única que subscribe.js, ID #11.
 const LIST_COMUNIDAD = 11;
+const LIST_MEDITACION = 13;
 
 exports.handler = async function (event) {
   if (event.httpMethod !== "POST") {
@@ -48,7 +49,7 @@ exports.handler = async function (event) {
       FECHA_ULTIMA_INTERACCION: today,
       ACEPTA_MARKETING: true
     },
-    listIds: [LIST_COMUNIDAD],
+    listIds: [LIST_COMUNIDAD, LIST_MEDITACION],
     updateEnabled: true
   };
 

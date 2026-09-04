@@ -327,8 +327,8 @@ section{padding:100px 48px;max-width:1200px;margin:0 auto}
 .tcard{background:#FAF0E5;padding:44px 32px;text-align:left;position:relative;transition:transform .3s}
 .tcard:hover{transform:translateY(-4px)}
 .tcard-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;color:#FAF0E5;margin-bottom:16px;position:relative;background:linear-gradient(135deg,#800C3B,#B8895A);box-shadow:0 0 12px rgba(128,12,59,.35),0 0 24px rgba(236,216,171,.25),inset 0 1px 0 rgba(236,216,171,.3)}
-.tcard-avatar-img{width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:62% 12%;margin-bottom:16px;border:2px solid rgba(200,149,108,.4);box-shadow:0 0 16px rgba(128,12,59,.15);display:block;overflow:hidden}
-@media(min-width:769px){.tcard-avatar-img{transform:scale(1.65);object-position:62% 10%}}
+.tcard-avatar-img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:62% 12%;margin-bottom:16px;border:2px solid rgba(200,149,108,.4);box-shadow:0 0 16px rgba(128,12,59,.15);display:block;overflow:hidden}
+@media(min-width:769px){.tcard-avatar-img{transform:scale(1.3);object-position:62% 10%}}
 .tcard-avatar::after{content:'';position:absolute;inset:-1px;border-radius:50%;background:linear-gradient(135deg,rgba(236,216,171,.6),transparent,rgba(200,149,108,.3));pointer-events:none}
 .tcard-quote{font-family:'Cormorant Garamond',serif;font-size:56px;color:rgba(236,216,171,.5);line-height:.8;display:block;margin-bottom:14px}
 .tcard p{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;font-style:italic;color:#69402F;line-height:1.75;margin-bottom:16px}
@@ -1206,8 +1206,10 @@ footer{background:#3D2314;padding:56px 48px;text-align:center}
 <div class="divider"></div>
 
 <!-- SESIONES GRUPALES -->
-<div class="premium-section" style="padding:80px 48px">
-  <div class="prem-inner" style="max-width:600px;margin:0 auto;text-align:center">
+<div class="premium-section" style="padding:80px 48px;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-60px;left:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(236,216,171,.22) 0%,transparent 70%);pointer-events:none;filter:blur(8px)"></div>
+  <div style="position:absolute;bottom:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(188,206,163,.18) 0%,transparent 70%);pointer-events:none;filter:blur(10px)"></div>
+  <div class="prem-inner" style="max-width:600px;margin:0 auto;text-align:center;position:relative;z-index:1">
     <span class="sec-tag" style="color:#ECD8AB">Sesiones grupales</span>
     <h2 class="sec-title" style="color:#FAF0E5;margin-bottom:16px">Una pausa que pueden<br><em style="color:#ECD8AB">vivir juntos</em></h2>
     <p style="font-size:14px;color:rgba(250,240,229,.75);max-width:480px;margin:0 auto 20px;line-height:1.9">Para equipos, comunidades, grupos de amigos y colectivos que quieran regalarse una experiencia diferente, desarrollar nuevas herramientas y volver hacia adentro.</p>
@@ -1288,7 +1290,7 @@ footer{background:#3D2314;padding:56px 48px;text-align:center}
         <span class="rcard-btn">Escribir por WhatsApp</span>
       </a>
       <a href="#productos" class="rcard">
-        <span class="rcard-icon" style="color:#ECD8AB"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2 L20 12 L12 22 L4 12 Z"/></svg></span>
+        <span class="rcard-icon" style="display:flex;justify-content:center"><img src="/logo-mark.png" alt="" style="height:36px;width:auto" aria-hidden="true"></span>
         <h3>Comenzar directamente</h3>
         <p>Ya sabes qué proceso es el tuyo. Comienza ahora con pago seguro.</p>
         <span class="rcard-btn">Ver los procesos</span>
